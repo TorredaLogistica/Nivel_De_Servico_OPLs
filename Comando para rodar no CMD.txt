@@ -1,3 +1,0 @@
-comando para rodar o chat boot no CMD
-
-py -m streamlit run indicador_operadores_logisticos.py
