@@ -182,16 +182,12 @@ padrao = next((a for a in arquivos if os.path.exists(a)), None)
 
 with st.sidebar:
     st.header("🚚 Filtros")
-    upload = st.file_uploader("Base OTIF", type=["xlsx", "xlsm", "xlsb", "csv", "parquet"])
 
 try:
-    if upload:
-        conteudo = upload.getvalue()
-        df = carregar_dados(conteudo, (upload.name, len(conteudo)))
-    elif padrao:
+    if padrao:
         df = carregar_dados(padrao, os.path.getmtime(padrao))
     else:
-        st.error("Base não encontrada. Coloque 'Base Otif 2026.xlsx' na raiz ou envie a base na barra lateral.")
+        st.error("Base não encontrada. Coloque o arquivo 'Base Otif 2026.parquet' na raiz do repositório.")
         st.stop()
 except Exception as e:
     st.error(f"Erro ao preparar a base: {e}")
